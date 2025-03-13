@@ -1,0 +1,42 @@
+
+
+name: CI
+
+#Controls when the workflow will run 
+on:
+# triggers the workflow on push or pull request events but only for the main branche
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+#Allows you to run this workflow manually from the action tab
+  workflow_dispatch:
+
+#this workflow contain a single job called "build"
+jobs:
+  build:
+
+#the type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+# Steps represent a sequence of tasks that will be executed as apart of the job 
+    steps:
+    - uses: actions/checkout@v4
+
+    #run a single command using runner shell
+ 
+
+    - name: run one line script 
+      run: echo hello
+
+
+    - name: multi line script 
+      run: |
+       echo add other actions to build 
+       echo test , and deploy you prject
+      
